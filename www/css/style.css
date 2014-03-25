@@ -1,0 +1,188 @@
+@font-face {
+    font-family: Gotham;
+    src: url('fonts/Gotham-XLight.ttf');
+}
+
+
+body {
+	background: black;
+	color: black;
+	font-family: Gotham;
+	margin:0px;
+}
+
+#container{
+	width:100%;
+	height: 100%;
+	margin:auto;
+	color: white;
+}
+
+#connectPage{
+  	margin:5%;
+	color:white;  	
+}
+
+#refreshButton{
+
+}
+
+/*div for top half of the screen*/
+#top{
+  	margin:5%;
+  	display: none;
+}
+
+h1{
+	margin: 20px;
+	padding:0px;
+	color:white;
+	font-weight: lighter;
+	font-size: 21px;
+	margin-left: 30px;
+}
+
+
+#lights{
+	width:100%;
+	height: 50%;
+	margin: auto;
+	padding-top: 0px;
+	margin-left:10px;
+
+}
+
+
+
+/*class for the led buttons*/
+#lights button{
+ 	width:46px;
+	height: 46px;
+	float: left;
+	margin: 10px;
+	border-radius: 23px;
+	border-color: #FFF;
+	background: black;
+}
+
+
+#lights button:focus{
+	outline: none;
+}
+
+
+.selected{
+	border: 6px solid #999;
+
+}
+
+/*div for the bottom half of screen*/
+#controlls{
+	margin-top: 0px;
+	padding-top: 0px;
+	height:50%;
+	display: none;
+}
+
+
+/*div that holds the bpm/note sliders and sequencer button, makes up bottom left quarter*/
+#sequencer{
+	height: 30%;
+	margin-left: 10px;
+}
+
+#colors input {
+	margin-top: 35px;
+	float:right;
+	margin-right: 45px;
+}
+
+
+
+
+
+/*table that hold just the sliders for the sequencer, it is the top part of the bottom left quarter*/
+#seqRanges {
+	padding-top: 20px;
+	width:100%;
+	float:left;
+	margin-left: -50px;
+}
+
+input[type=range]{
+    -webkit-appearance: none;
+    background-color: silver;
+    width: 100px;
+    height:2px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+     -webkit-appearance: none;
+    background-color: #666;
+    opacity: 0.8;
+    width: 20px;
+    height: 26px;
+}
+
+
+#bpm, #note{
+    transform:rotate(-90deg);
+	-ms-transform:rotate(-90deg); /* IE 9 */
+	-webkit-transform:rotate(-90deg); /* Safari and Chrome */
+	margin-top: 60px;
+}
+
+#note{
+	margin-left:-40px;
+
+}
+
+#bpmVal{
+	color:#cecece;
+	margin-left: 20px;
+}
+
+#noteVal{
+	color:#cecece;
+	margin-left:-20px;
+
+}
+
+
+.slider{
+	float:left;
+	width: 80px;
+	margin-left: 50px;
+
+}
+
+
+/*the sequencer button itself*/
+ #seqButton{
+ 	margin-top: 10px;
+	margin-left: 20px;
+ 	width:46px;
+	height: 46px;
+	float: left;
+	border-radius: 23px;
+	border-color: #FFF;
+	background: red;
+
+}
+
+#seqButton:focus{
+	outline: none;
+}
+
+input:focus{
+	outline:none;
+
+}
+/*the table that holds the rgb sliders, makes up bottom right quarter*/
+
+
+
+
+
+
+
