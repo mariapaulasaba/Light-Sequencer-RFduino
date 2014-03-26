@@ -24,11 +24,13 @@
     </feature>
     <name>rfduinoBracelet</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
-    </description>
+        Assignment for Connected Devices ITP Spring 2014 class. A phonegap app that controls a 5 RGB leds bracelet via RFduino (BLE).    </description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+        Maria Paula Saba, Jonathan Sparks
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <preference name="fullscreen" value="false" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
 </widget>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>EA8CABA4-5900-40D3-A915-029CA9D14B1A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>rfduinoBracelet</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>B2373B0A-2F9C-423F-94FB-5F5945151884</key>
+		<string>https://github.com/mariapaulasaba/Light-Sequencer-RFduino.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>platforms/ios/rfduinoBracelet.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>B2373B0A-2F9C-423F-94FB-5F5945151884</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/mariapaulasaba/Light-Sequencer-RFduino.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>B2373B0A-2F9C-423F-94FB-5F5945151884</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B2373B0A-2F9C-423F-94FB-5F5945151884</string>
+			<key>IDESourceControlWCCName</key>
+			<string>rfduinoBracelet</string>
+		</dict>
+	</array>
+</dict>
+</plist>

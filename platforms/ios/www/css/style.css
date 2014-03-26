@@ -20,17 +20,22 @@ body {
 
 #connectPage{
   	margin:5%;
+  	margin-left: 80px;
+  	margin-top:60px;
 	color:white;  	
 }
 
-#refreshButton{
+#connectPage ul{
+	margin:40px;
 
 }
+
+
 
 /*div for top half of the screen*/
 #top{
   	margin:5%;
-  	display: none;
+	display:none;
 }
 
 h1{
@@ -78,10 +83,10 @@ h1{
 
 /*div for the bottom half of screen*/
 #controlls{
+	display:none;
 	margin-top: 0px;
 	padding-top: 0px;
 	height:50%;
-	display: none;
 }
 
 
@@ -161,13 +166,26 @@ input[type="range"]::-webkit-slider-thumb {
  #seqButton{
  	margin-top: 10px;
 	margin-left: 20px;
- 	width:46px;
+ 	width:52px;
 	height: 46px;
 	float: left;
-	border-radius: 23px;
-	border-color: #FFF;
-	background: red;
+	border-radius: 10px;
+	border-color: #999;
+	background: #333;
+	color: white;
+}
 
+#refreshButton{
+ 	margin-top: 10px;
+	margin-left: 100px;
+ 	width:100px;
+	height: 46px;
+	float: left;
+	border-radius: 10px;
+	border-color: #999;
+	background: #333;
+	color: white;
+	font-size: 16px;
 }
 
 #seqButton:focus{

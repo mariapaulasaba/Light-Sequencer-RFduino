@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.megster.rfduino.temp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>RFduino Bracelet</name>
+    <description>
+        Assignment for Connected Devices ITP Spring 2014 class. A phonegap app that controls a 5 RGB leds bracelet via RFduino (BLE).
+    <author href="https://github.com/don">
+        Maria Paula Saba, Jonathan Sparks
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <preference name="fullscreen" value="false" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />    
+</widget>

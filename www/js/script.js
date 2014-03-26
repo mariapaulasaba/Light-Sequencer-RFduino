@@ -2,7 +2,7 @@
 var screenWidth; // this is taken from the screen width and used to size other things
 
 var ledSelect = [false,false,false,false,false]; // used to determine whether an led is selected
-var initLed = [true,true,true,true,true] // determines if led was just clicked so its values can reset sliders
+var initLed = [true,true,true,true,true]; // determines if led was just clicked so its values can reset sliders
 var ledIDs = ["led1","led2","led3","led4","led5"]; // the html ids used for targeting the leds
 var LedSeqTimes = [0,0,0,0,0,0]; // stores the time associated with note used for how long the led will show
 var LedSeqNotes = [0,0,0,0,0,0]; // stores the note value for each led, used with note slider
@@ -56,18 +56,19 @@ var app = {
         refreshButton.addEventListener('touchstart', this.refreshDeviceList, false);
         deviceList.addEventListener('touchstart', this.connect, false); 
     },
-    
+   
     onDeviceReady: function() {
        app.refreshDeviceList();
     },
     
     refreshDeviceList: function() {	
-       document.getElementById('deviceList').innerHTML = 'refreshed'; // empties the list
+       document.getElementById('deviceList').innerHTML = 'Nothing out there yet'; // empties the list
        rfduino.discover(1, app.onDiscoverDevice, app.onError);
     },
     
     onDiscoverDevice: function(device) {
-        var listItem = document.createElement('li'),
+ 			document.getElementById('deviceList').innerHTML = '';      
+ 			 var listItem = document.createElement('li'),
             html = '<b>' + device.name + '</b><br/>' +
                 'RSSI: ' + device.rssi + '&nbsp;|&nbsp;' +
                 'Advertising: ' + device.advertising + '<br/>' +
@@ -79,18 +80,17 @@ var app = {
     },
 
     connect: function(e) {
-        var uuid = e.target.getAttribute('uuid'),
-            onConnect = function() {
-                rfduino.onData(app.onData, app.onError);
-                app.showSequencer();
-            };
+        var uuid = e.target.getAttribute('uuid'), 
+    	onConnect = function() {
+            rfduino.onData(app.onData, app.onError);
+            app.showSequencer();
+        };
+    	rfduino.connect(uuid, onConnect, app.onError);
 
-        rfduino.connect(uuid, onConnect, app.onError);
     },
 
-    writeData: function(){
-
-        rfduino.write('1');
+    writeData: function(data){
+        rfduino.write(data);
     },
 
 
@@ -102,10 +102,12 @@ var app = {
         document.getElementById('connectPage').style.display = 'block';
         document.getElementById('top').style.display = 'none';
         document.getElementById('controlls').style.display = 'none';
+		document.getElementById('colorpicker').color.hidePicker();
+
     },
 
     showSequencer: function() {
- 		// document.getElementById('debug2').innerHTML = "connected!";
+ 		//document.getElementById('debug2').innerHTML = "connected!";
         document.getElementById('connectPage').style.display = 'none';
         document.getElementById('top').style.display = 'block';
         document.getElementById('controlls').style.display = 'block';
@@ -152,10 +154,10 @@ function map(value, start1, stop1, start2, stop2) {
 function update(){
 	
 		cTime = cTime + 1; // this is the timer, basically a millis()
-		document.getElementById('debug2').innerHTML = "it is not connected!";
+		//document.getElementById('debug2').innerHTML = "it is not connected!";
 
 		// the stage where you can set led values, sequencer off
-		if(seqState == false){
+		if(!seqState){
 			bpmGlobal = bpm.value;
 			bpmVal.innerHTML = bpmGlobal +"bpm";
 			noteVal.innerHTML = noteText;
@@ -191,10 +193,10 @@ function update(){
 			// and adjust according to value entered in sliders
 			for(var i = 0; i<5; i++){
 
-				if(ledSelect[i] == true){
+				if(ledSelect[i]){
 					// this first part only happens when you initially click the led
 					// it resets the sliders to the values already stored for that led
-					if(initLed[i] == true){
+					if(initLed[i]){
 
 						var red = map(ledColors[i][0], 0, 255, 0, 1);
 						var green = map(ledColors[i][1], 0, 255, 0, 1);
@@ -223,17 +225,15 @@ function update(){
 
 					// colorString is "rgb(color)" 
 					//this replace color with the current led's rgb values and sets it to tempString
-					tempString = colorString.replace(/color/, ledColors[i][0] +","
-															+ledColors[i][1] +","
-																+ledColors[i][2]);
+					tempString = colorString.replace(/color/, ledColors[i][0] +","+ledColors[i][1] +","+ledColors[i][2]);
 
 					//this funtion is what goes to the html and replaces the led's color
 					//it takes the number of led in the ledID[] 
 					// and the new tempString which will be the appropriate string with the rgb values
-					document.getElementById('debug2').innerHTML = "it is selecting!!!!!";
+					//document.getElementById('debug2').innerHTML = "it is selecting!!!!!";
 					document.getElementById(ledIDs[i]).className = "selected";
 					displayLights(i, tempString);
-					document.getElementById('debug2').innerHTML = "displayed lights!";
+					//document.getElementById('debug2').innerHTML = "displayed lights!";
 
 
 				}//end ledSelect
@@ -242,9 +242,11 @@ function update(){
 
 				}
 
+
+
 				// an equation that converts the values in the note slider to time in ms
 				// and stores that for use in the sequencer
-				tExp = Math.pow(2, LedSeqNotes[i])
+				tExp = Math.pow(2, LedSeqNotes[i]);
 				LedSeqTimes[i] = (60/bpmGlobal)*(1000/tExp);
 
 			}// end for loop
@@ -254,7 +256,7 @@ function update(){
 			
 		// this part is basically the sequencer playing, seqState = true 
 		else{
-			document.getElementById('debug2').innerHTML = "sequencer playing!!!!!";
+			//document.getElementById('debug2').innerHTML = "sequencer playing!!!!!";
 		
 			//we loop through the leds w/ ledCount
 			//noteLimit is part of a timer, how long do we display the current led 
@@ -266,17 +268,15 @@ function update(){
 			// show only the current led
 			if(cTime - pTime < noteLimit){
 
-				for(var i = 0; i<5; i++){
+				for(var j = 0; j<5; j++){
 
-					displayLights(i, "rgb(0,0,0)"); // first cycle through all leds and turn them off
+					displayLights(j, "rgb(0,0,0)"); // first cycle through all leds and turn them off
 
 				}
 
 				// now with all of them off, we only turn the current one on
 				// this is the same as before with the string stuff and calling displayLights()
-				tempString = colorString.replace(/color/, ledColors[ledCount][0] +","
-														+ledColors[ledCount][1] +","
-															+ledColors[ledCount][2]);
+				tempString = colorString.replace(/color/, ledColors[ledCount][0] +","+ledColors[ledCount][1] +","+ledColors[ledCount][2]);
 
 
 				displayLights(ledCount, tempString);
@@ -289,7 +289,7 @@ function update(){
 			// start the timer over(pTime=cTime), and increase the ledcount to the next led
 			else{
 				pTime = cTime;
-				ledCount++
+				ledCount++;
 			
 				if(ledCount> 5){
 					ledCount = 0; // when we're done with the last led we start over
@@ -306,11 +306,11 @@ function update(){
 // for each it set all the ledStates to false then only the one selected to true
 //	it also sets the selected led's initLed value to try, this is the slider resetting thing
 function toggle(button){
-	app.writeData();
 		
 	switch(button){
 
 		case 1:
+		app.writeData('1');
 
 			for(var i = 0; i<5; i++){	
 				ledSelect[i] = false;
@@ -320,6 +320,7 @@ function toggle(button){
 			break;
 
 		case 2 :
+		app.writeData('2');
 
 			for(var i = 0; i<5; i++){	
 				ledSelect[i] = false;
@@ -367,19 +368,17 @@ function toggle(button){
 
 function seqToggle(button){
 
-	if(seqState == true){
+	if(seqState === true){
 		document.getElementById('lights').style.paddingTop = '0px';
 		document.getElementById('controlls').style.display = 'block';
-		document.getElementById('seqButton').style.background = 'red';
-		document.getElementById('seqButton').innerHTML = "OFF";
+//		document.getElementById('seqButton').style.background = 'red';
+		document.getElementById('seqButton').innerHTML = "PLAY";
 		document.getElementById('colorpicker').color.showPicker();
 
 		// when we turn the sequencer off we have to return all the leds back on
 		// all but one would be left black from the sequencer mode otherwise
 		for(var i=0;i<5;i++){
-			tempString = colorString.replace(/color/, ledColors[i][0] +","
-													+ledColors[i][1] +","
-													+ledColors[i][2]);
+			tempString = colorString.replace(/color/, ledColors[i][0] +","+ledColors[i][1] +","+ledColors[i][2]);
 			displayLights(i, tempString);
 
 		}
@@ -392,8 +391,8 @@ function seqToggle(button){
 	else{
 		document.getElementById('lights').style.paddingTop= '75px';
 		document.getElementById('controlls').style.display = 'none';
-		document.getElementById('seqButton').style.background = 'green';
-		document.getElementById('seqButton').innerHTML = "ON";
+//		document.getElementById('seqButton').style.background = 'green';
+		document.getElementById('seqButton').innerHTML = "STOP";
 		document.getElementById('colorpicker').color.hidePicker();
 
 		for(var i = 0; i<5; i++){
